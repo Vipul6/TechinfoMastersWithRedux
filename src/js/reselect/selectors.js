@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 // selector
 const getTechies = (state) => state.techies.techies
-const getSearchTerm = (state, props) => props.match.params.id
+const getSearchTerm = (state, props) => props.match.params.id && props.match.params.id.toLowerCase() 
 
 // reselect function
 export const makeGetTechiesState = () => createSelector(
