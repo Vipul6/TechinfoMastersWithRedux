@@ -24,7 +24,7 @@ function setup() {
       }
     }
   
-    const enzymeWrapper = mount(<SearchComponent {...props} />)
+    const enzymeWrapper = shallow(<SearchComponent {...props} />)
   
     return {
       props,
@@ -46,7 +46,8 @@ function setup() {
       it('should call handleSearchKey', () => {
         const { enzymeWrapper, props } = setup()
         const input = enzymeWrapper.find('InputSearch')
-        console.log(input.props().actions)
+        console.log(enzymeWrapper.instance())
+        expect(enzymeWrapper.find('InputSearch').render().find('input').length).toEqual(2);
         input.props().setSearchKey('')
         expect(props.actions.setSearchKey).toHaveBeenCalledTimes(1)
         input.props().setSearchKey('fedu')
